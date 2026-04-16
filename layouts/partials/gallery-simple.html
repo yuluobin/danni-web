@@ -1,0 +1,69 @@
+{{ $columns := default 3 .Params.columns }}
+{{ $square := default false .Params.square }}
+{{ $layout := default "grid" .Params.layout }}
+
+<section class="gallery">
+  <div id="gallery" class="{{ if eq $layout "carousel" }}carousel-wrap{{ else }}simple-grid cols-{{ $columns }}{{ if $square }} square{{ end }}{{ end }}">
+
+    {{ $images := slice }}
+    {{ range $image := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
+      {{ $title := "" }}
+      {{ $date := "" }}
+      {{ with $image.Exif }}
+        {{ $date = .Date }}
+        {{ with .Tags.ImageDescription }}
+          {{ $title = . }}
+        {{ end }}
+      {{ end }}
+      {{ if ne $image.Title $image.Name }}
+        {{ $title = $image.Title }}
+      {{ end }}
+      {{ if $image.Params.Date }}
+        {{ $date = time $image.Params.Date }}
+      {{ end }}
+      {{ $images = $images | append (dict
+        "Name" $image.Name
+        "Title" $title
+        "Date" $date
+        "image" $image
+        "Params" $image.Params
+        )
+      }}
+    {{ end }}
+    {{ $publishResources := default true .Params.build.publishResources }}
+    {{ $sortedImages := sort $images (.Params.sort_by | default "Name") (.Params.sort_order | default "asc") }}
+
+    {{ if eq $layout "carousel" }}
+      <button class="carousel-arrow carousel-prev" aria-label="Previous">&lsaquo;</button>
+      <div class="carousel-track">
+    {{ end }}
+
+    {{ range $i, $item := $sortedImages }}
+      {{ $image := .image }}
+      {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fit 2000x2000")) }}
+      {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 2000x2000")) }}
+
+      <a class="gallery-item {{ if eq $layout "carousel" }}carousel-item{{ else }}simple-grid-item{{ end }}"
+         href="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}"
+         data-pswp-src="{{ $full.RelPermalink }}"
+         data-pswp-width="{{ $full.Width }}"
+         data-pswp-height="{{ $full.Height }}"
+         data-pswp-target="{{ $image.Name | urlize }}"
+         title="{{ .Title }}"
+         itemscope itemtype="https://schema.org/ImageObject">
+        <img class="lazyload"
+             width="{{ $thumbnail.Width }}"
+             height="{{ $thumbnail.Height }}"
+             data-src="{{ $thumbnail.RelPermalink }}"
+             alt="{{ .Title }}" />
+        <meta itemprop="contentUrl" content="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}" />
+      </a>
+    {{ end }}
+
+    {{ if eq $layout "carousel" }}
+      </div>
+      <button class="carousel-arrow carousel-next" aria-label="Next">&rsaquo;</button>
+    {{ end }}
+
+  </div>
+</section>

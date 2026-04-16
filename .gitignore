@@ -1,0 +1,9 @@
+public/
+resources/
+.hugo_build.lock
+.DS_Store
+*.png
+*.jpeg
+.playwright-mcp/
+wix-snapshot.md
+node_modules/

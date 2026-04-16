@@ -1,0 +1,102 @@
+baseURL = "https://dannixu.com/"
+title = "Danni Xu Studio"
+copyright = "Danni Xu Studio"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+languageCode = "en"
+timeZone = "America/New_York"
+timeout = "120s"
+theme = "gallery"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  defaultTheme = "light"
+  description = "designer, maker, dreamer"
+  title = "Danni Xu Studio"
+  [params.author]
+    email = "dannixustudio@gmail.com"
+    name = "Danni Xu"
+  [params.socialIcons]
+    facebook = "https://www.facebook.com/danni.94318"
+    instagram = "https://www.instagram.com/dannii_xu/"
+    email = "mailto:dannixustudio@gmail.com"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML"]
+  section = ["HTML"]
+
+[imaging]
+  quality = 92
+  resampleFilter = "CatmullRom"
+  [imaging.exif]
+    disableDate = false
+    disableLatLong = true
+    includeFields = "ImageDescription|Orientation"
+
+# Navigation
+[[menu.main]]
+  name = "Security Blanket"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Past Work"
+  identifier = "past-work"
+  url = "#"
+  weight = 2
+
+[[menu.main]]
+  name = "Paper Jewelry Series"
+  url = "/paper-jewelry/"
+  parent = "past-work"
+  weight = 1
+
+[[menu.main]]
+  name = "GEM Series"
+  url = "/gem-series/"
+  parent = "past-work"
+  weight = 2
+
+[[menu.main]]
+  name = "Lillstreet Residency Work"
+  url = "/lillstreet/"
+  parent = "past-work"
+  weight = 3
+
+[[menu.main]]
+  name = "Undergrad"
+  url = "/undergrad/"
+  parent = "past-work"
+  weight = 4
+
+[[menu.main]]
+  name = "Undergrad Thesis"
+  url = "/undergrad-thesis/"
+  parent = "past-work"
+  weight = 5
+
+[[menu.main]]
+  name = "Production Line"
+  url = "/production-line/"
+  parent = "past-work"
+  weight = 6
+
+[[menu.main]]
+  name = "CV"
+  url = "/cv/"
+  weight = 3
+
+[[menu.main]]
+  name = "Bio"
+  url = "/bio/"
+  weight = 4
+
+[[menu.main]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 5

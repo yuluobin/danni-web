@@ -1,0 +1,578 @@
+/* =============================================
+   Danni Xu Studio - Custom Styles
+   ============================================= */
+
+/* --- Override theme header --- */
+body > header.site-header {
+  display: block;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 55px;
+  min-height: 55px;
+  position: relative;
+  z-index: 50;
+}
+
+body > menu {
+  display: none !important;
+}
+
+/* --- Black branding box (top-left, fixed) --- */
+.site-branding {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  background: #333;
+  color: #fff;
+  padding: 1.25rem 1.5rem 1.25rem 1.25rem;
+  min-width: 130px;
+}
+
+.site-branding a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+
+.brand-corner {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid rgba(255, 255, 255, 0.5);
+  border-right: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.site-title {
+  font-family: "Overlock", cursive, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  margin: 0;
+  color: #fff;
+}
+
+.site-tagline {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.75rem 0 0;
+}
+
+/* --- Nav: fixed with white background strip --- */
+.header-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 150px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem 0.75rem 2rem;
+  background: #fff;
+}
+
+/* --- Navigation --- */
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--text-1);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.nav-menu > li {
+  position: relative;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #4a90d9;
+}
+
+.nav-menu > li:first-child .nav-link {
+  color: #4a90d9;
+}
+
+/* --- Dropdown --- */
+.has-dropdown { position: relative; }
+
+.dropdown-toggle::after {
+  content: "";
+  display: inline-block;
+  width: 0; height: 0;
+  margin-left: 0.35em;
+  vertical-align: middle;
+  border-top: 4px solid currentColor;
+  border-right: 3px solid transparent;
+  border-left: 3px solid transparent;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  list-style: none;
+  padding: 0.4rem 0;
+  margin: 0;
+  min-width: 220px;
+  z-index: 200;
+}
+
+.dropdown-menu li .nav-link {
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.dropdown-menu li .nav-link:hover {
+  color: #4a90d9;
+  background: #f8f8f8;
+}
+
+.has-dropdown:hover .dropdown-menu { display: block; }
+
+/* --- Social Icons --- */
+.social-header {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.social-header a {
+  color: #333;
+  transition: opacity 0.2s;
+}
+
+.social-header a:hover { opacity: 0.6; }
+
+/* --- Gallery section base --- */
+section.gallery {
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: 160px;
+  padding-right: 100px;
+  padding-top: 80px;
+  overflow: visible;
+}
+
+#gallery {
+  visibility: visible !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* ======================================
+   HOMEPAGE: 4-image grid groups
+   ====================================== */
+.image-group {
+  display: grid;
+  grid-template-columns: 19% 19% 1fr;
+  grid-template-rows: 2fr 3fr;
+  gap: 4px;
+  margin-bottom: 80px;
+  max-width: 960px;
+  height: 420px;
+}
+
+.grid-img {
+  overflow: hidden;
+  cursor: zoom-in;
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+.grid-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s ease;
+}
+
+/* Hover darkening effect */
+.grid-img:hover img {
+  filter: brightness(0.7);
+}
+
+/* Hide caption text in gallery grid */
+.pswp-caption-content {
+  display: none;
+}
+
+/* PhotoSwipe caption styling */
+.pswp__dynamic-caption {
+  font-family: "Raleway", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+.pswp__dynamic-caption strong {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.grid-img-1 { grid-column: 1; grid-row: 1; }
+.grid-img-2 { grid-column: 2; grid-row: 1; }
+.grid-img-3 { grid-column: 1 / 3; grid-row: 2; }
+.grid-img-4 { grid-column: 3; grid-row: 1 / 3; }
+
+.image-group:has(.grid-img-1):not(:has(.grid-img-2)) {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  height: 300px;
+}
+.image-group:has(.grid-img-1):not(:has(.grid-img-2)) .grid-img-1 {
+  grid-column: 1; grid-row: 1;
+}
+.image-group:has(.grid-img-2):not(:has(.grid-img-3)) {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  height: 250px;
+}
+.image-group:has(.grid-img-3):not(:has(.grid-img-4)) {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 350px;
+}
+
+/* ======================================
+   PAST WORK: Simple centered grid
+   ====================================== */
+.simple-grid {
+  display: grid;
+  gap: 20px;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.simple-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.simple-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.simple-grid-item {
+  overflow: hidden;
+  cursor: zoom-in;
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+.simple-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Square aspect ratio when specified */
+.simple-grid.square .simple-grid-item {
+  aspect-ratio: 1;
+}
+
+/* ======================================
+   CAROUSEL (Undergrad Thesis)
+   ====================================== */
+.carousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 8px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.carousel-item {
+  flex: 0 0 32%;
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+  top: auto !important;
+  left: auto !important;
+  cursor: zoom-in;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: transparent;
+  border: none;
+  font-size: 3rem;
+  color: #bbb;
+  cursor: pointer;
+  padding: 1rem 0.5rem;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.carousel-arrow:hover {
+  color: #555;
+}
+
+.carousel-prev { left: 0; }
+.carousel-next { right: 0; }
+
+/* ======================================
+   PAGE TITLES
+   ====================================== */
+hgroup {
+  margin-bottom: 2rem;
+  padding-left: 160px;
+  padding-top: 80px;
+}
+
+hgroup h1 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+hgroup p { text-align: left; }
+
+/* Hide empty titles */
+hgroup:empty,
+hgroup:has(h1:empty) {
+  display: none;
+}
+
+/* ======================================
+   PROSE PAGES (CV, Bio, Contact)
+   ====================================== */
+.prose {
+  max-width: 700px;
+  margin: 0 auto;
+  margin-left: 160px;
+  padding-top: 80px;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.prose h3 {
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.4rem;
+  margin-top: 2rem;
+}
+
+/* Bio/Contact background image */
+.prose:has(.bio-box),
+.prose:has(.contact-centered) {
+  background: url('/images/bio-bg.jpg') center/cover no-repeat;
+  margin-left: 0;
+  max-width: 100%;
+  padding: 80px 160px 80px 160px;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+/* Bio box */
+.bio-box {
+  border: 1px solid #aaa;
+  padding: 2.5rem 3rem;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.85;
+  color: #555;
+  max-width: 520px;
+  margin: 0 0 0 auto;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.bio-box p { margin: 0 0 1.5em; }
+.bio-box p:last-child { margin-bottom: 0; }
+
+/* Contact centered */
+.contact-centered {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.1rem;
+  line-height: 2.5;
+  color: #666;
+  width: 100%;
+}
+
+.contact-centered a { color: #333; }
+
+.prose:has(.contact-centered) {
+  justify-content: center;
+}
+
+/* ======================================
+   FOOTER
+   ====================================== */
+body > footer {
+  margin-top: 3rem;
+  padding: 2rem;
+  padding-left: 160px;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-2);
+}
+
+body > footer section.social-icons { display: none; }
+
+/* Album cards */
+section.galleries {
+  max-width: 100%;
+  margin: 0 auto 3rem;
+  padding-left: 160px;
+}
+
+/* ======================================
+   MOBILE
+   ====================================== */
+@media (max-width: 900px) {
+  .site-branding {
+    position: relative;
+    top: 0; left: 0;
+    min-width: auto;
+    padding: 1rem 1.25rem;
+  }
+
+  .header-right {
+    position: relative;
+    padding: 0.75rem 1rem 0 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  section.gallery,
+  section.galleries,
+  hgroup,
+  .prose,
+  body > footer {
+    padding-left: 1.5rem;
+    margin-left: 0;
+  }
+
+  .prose:has(.contact-centered) { padding-left: 1.5rem; }
+  hgroup h1, hgroup p { text-align: center; }
+  .prose { margin-left: auto; margin-right: auto; }
+  .bio-box { margin: 0 auto; }
+  .simple-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  body > header.site-header { flex-direction: column; }
+
+  .site-branding {
+    width: auto;
+    align-self: flex-start;
+    margin: 8px;
+  }
+
+  .header-right {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .nav-toggle { display: flex; align-self: flex-end; }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #eee;
+    padding: 0.5rem 0;
+  }
+
+  .nav-menu.open { display: flex; }
+  .nav-link { text-align: right; padding: 0.5rem 1rem; }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: #fafafa;
+    min-width: 100%;
+  }
+
+  .has-dropdown:hover .dropdown-menu { display: none; }
+  .has-dropdown.open .dropdown-menu { display: block; }
+
+  .simple-grid.cols-3,
+  .simple-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+
+  .image-group { height: 280px; }
+
+  .carousel-item { flex: 0 0 80%; }
+}
