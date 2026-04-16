@@ -5,14 +5,16 @@ Portfolio website for jewelry designer Danni Xu, migrated from Wix to Hugo + Git
 ## Stack
 
 - **Hugo** v0.160+ (extended) with `hugo-theme-gallery` (git submodule at `themes/gallery/`)
-- Deployed to GitHub Pages (free, replaces $280/yr Wix)
+- Deployed to **GitHub Pages** via GitHub Actions (auto-builds on push to `main`)
 - Fonts: Overlock (title), Montserrat (tagline), Raleway (nav/body) via Google Fonts
+- Repo: `github.com/yuluobin/danni-web`
+- Live: `https://yuluobin.github.io/danni-web/` (will become `dannixu.com` after DNS switch)
 
 ## Project Structure
 
 ```
 content/
-├── _index.md                # Homepage (Security Blanket) - 4-image grid groups
+├── _index.md                # Homepage (Security Blanket) - 4-image grid groups + image metadata
 ├── *.jpg                    # Security Blanket images (in content root)
 ├── paper-jewelry/           # 3-col square grid
 ├── gem-series/              # 3-col natural grid
@@ -21,8 +23,8 @@ content/
 ├── undergrad-thesis/        # Horizontal carousel
 ├── production-line/         # 3-col natural grid
 ├── cv.md                    # Prose page
-├── bio.md                   # Prose page with bordered box
-└── contact.md               # Prose page, centered
+├── bio.md                   # Prose page with bordered box + background image
+└── contact.md               # Prose page, centered + background image
 
 layouts/                     # Custom overrides
 ├── _default/
@@ -32,7 +34,7 @@ layouts/                     # Custom overrides
     ├── header.html          # Custom header (black box + nav bar)
     ├── head-custom.html     # Google Fonts
     ├── menu.html            # Empty (nav is in header.html)
-    ├── gallery.html         # 4-image grid groups (homepage only)
+    ├── gallery.html         # 4-image grid groups (homepage only) + captions
     └── gallery-simple.html  # Configurable grid/carousel (past work pages)
 
 assets/
@@ -40,6 +42,12 @@ assets/
 └── js/
     ├── custom.js            # Mobile nav toggle + carousel scroll
     └── gallery.js           # Override: disables justified layout
+
+static/images/
+└── bio-bg.jpg               # Background image for Bio/Contact pages
+
+.github/workflows/
+└── hugo.yml                 # GitHub Actions: auto-build & deploy on push
 ```
 
 ## Per-Page Gallery Config (front matter)
@@ -49,6 +57,17 @@ params:
   columns: 3        # Grid columns (default 3)
   square: true       # Force square aspect ratio
   layout: carousel   # "grid" (default) or "carousel"
+```
+
+## Image Metadata (homepage captions)
+
+In `content/_index.md`, each image can have a title and description shown in the lightbox:
+```yaml
+resources:
+  - src: "04.jpg"
+    title: "베개 [begae] (Pillow)"
+    params:
+      description: "Materials: 3d printed resin, copper<br>Dimension: 3\"x2\" x1\"<br>Date: 2021"
 ```
 
 ## Development
@@ -63,24 +82,40 @@ pkill -f "hugo server"; sleep 1; rm -rf resources public
 ```
 Then restart the server.
 
-## Build
+## Deployment
 
+Push to `main` and GitHub Actions auto-builds & deploys (~2 min):
 ```bash
-hugo                  # Outputs to public/
+git add . && git commit -m "Update content" && git push
 ```
 
 ## Key Design Details
 
 - **Header**: Fixed black branding box (top-left) + fixed white nav bar (top-right, `left: 150px`)
 - **Homepage gallery**: Images grouped in sets of 4 with specific grid layout (2 small + 1 medium + 1 large)
+- **Hover effect**: Images darken on mouse hover
+- **Lightbox**: PhotoSwipe with captions (title, materials, dimensions, date)
 - **Past work pages**: Simple centered grids, configurable per page
+- **Bio/Contact**: Jewelry background image with bordered text box overlay
 - **Nav active color**: `#4a90d9` (blue)
 - **Nav text color**: `#888` (gray)
 - **Image processing**: `fit 2000x2000`, quality 92
 
+## DNS Migration Plan (dannixu.com)
+
+Domain registered at Wix (expires Dec 2027). Migration steps:
+
+1. **When ready**: Edit DNS at Wix dashboard (My Domains > dannixu.com > Manage DNS):
+   - A records: `185.199.108.153`, `.109.`, `.110.`, `.111.`
+   - CNAME `www`: `yuluobin.github.io`
+2. **Set custom domain**: `gh api repos/yuluobin/danni-web/pages -X PUT -f cname=dannixu.com`
+3. **Update baseURL** in `hugo.toml` to `https://dannixu.com/` and push
+4. **Before Dec**: Transfer domain to Cloudflare (~$10/yr) to avoid Wix renewal
+
 ## TODO
 
-- [ ] Get exact font settings from Danni
-- [ ] Replace Wix-compressed images with originals
-- [ ] Set up GitHub Actions for auto-deploy
-- [ ] Point dannixu.com DNS to GitHub Pages
+- [ ] Get exact font settings from Danni (current: Overlock/Montserrat/Raleway)
+- [ ] Replace Wix-compressed images with originals from Danni
+- [ ] Fill in image titles/descriptions in `content/_index.md` (currently placeholder "TBD")
+- [ ] Switch DNS to GitHub Pages (when Danni approves the new site)
+- [ ] Transfer domain away from Wix before Dec renewal
