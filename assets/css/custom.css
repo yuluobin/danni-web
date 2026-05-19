@@ -640,13 +640,30 @@ section.galleries {
     justify-content: flex-end;
   }
 
+  .home-gallery,
+  .sub-gallery,
   section.gallery,
   section.galleries,
   hgroup,
   .prose,
   body > footer {
     padding-left: 1.5rem;
+    padding-right: 1.5rem;
     margin-left: 0;
+  }
+
+  /* Homepage groups stack on mobile */
+  .image-group.layout-A,
+  .image-group.layout-B,
+  .image-group.layout-C {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    height: auto;
+  }
+  .image-group > .grid-img {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    aspect-ratio: 4 / 3;
   }
 
   .prose:has(.contact-centered) { padding-left: 1.5rem; }
