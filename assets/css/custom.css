@@ -127,23 +127,8 @@ body > menu {
   color: #4a90d9;
 }
 
-.nav-menu > li:first-child .nav-link {
-  color: #4a90d9;
-}
-
 /* --- Dropdown --- */
 .has-dropdown { position: relative; }
-
-.dropdown-toggle::after {
-  content: "";
-  display: inline-block;
-  width: 0; height: 0;
-  margin-left: 0.35em;
-  vertical-align: middle;
-  border-top: 4px solid currentColor;
-  border-right: 3px solid transparent;
-  border-left: 3px solid transparent;
-}
 
 .dropdown-menu {
   display: none;
