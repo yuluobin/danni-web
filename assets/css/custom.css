@@ -204,17 +204,50 @@ section.gallery {
 }
 
 /* ======================================
-   HOMEPAGE: 4-image grid groups
+   HOMEPAGE: variable-sized image groups (Wix parity)
+   3 layouts: A (4 imgs), B (5 imgs), C (5 imgs)
    ====================================== */
 .image-group {
   display: grid;
-  grid-template-columns: 19% 19% 1fr;
-  grid-template-rows: 2fr 3fr;
   gap: 4px;
   margin-bottom: 80px;
-  max-width: 960px;
+  max-width: 976px;
+}
+
+/* Layout A: 4 imgs — 2 smalls top-left, medium bottom-left, large right */
+.image-group.layout-A {
+  grid-template-columns: 175fr 175fr 626fr;
+  grid-template-rows: 136fr 277fr;
   height: 420px;
 }
+.image-group.layout-A > .grid-img-1 { grid-column: 1; grid-row: 1; }
+.image-group.layout-A > .grid-img-2 { grid-column: 2; grid-row: 1; }
+.image-group.layout-A > .grid-img-3 { grid-column: 1 / 3; grid-row: 2; }
+.image-group.layout-A > .grid-img-4 { grid-column: 3; grid-row: 1 / 3; }
+
+/* Layout B: 5 imgs — 2 stacked large left, (small+medium) top right, wide bottom right */
+.image-group.layout-B {
+  grid-template-columns: 451fr 158fr 356fr;
+  grid-template-rows: 301fr 301fr;
+  height: 610px;
+}
+.image-group.layout-B > .grid-img-1 { grid-column: 1; grid-row: 1; }
+.image-group.layout-B > .grid-img-2 { grid-column: 1; grid-row: 2; }
+.image-group.layout-B > .grid-img-3 { grid-column: 2; grid-row: 1; }
+.image-group.layout-B > .grid-img-4 { grid-column: 3; grid-row: 1; }
+.image-group.layout-B > .grid-img-5 { grid-column: 2 / 4; grid-row: 2; }
+
+/* Layout C: 5 imgs — 2 smalls top, 1 wide bottom (cols 1-2), 2 stacked right */
+.image-group.layout-C {
+  grid-template-columns: 285fr 264fr 420fr;
+  grid-template-rows: 190fr 280fr;
+  height: 565px;
+}
+.image-group.layout-C > .grid-img-1 { grid-column: 1; grid-row: 1; }
+.image-group.layout-C > .grid-img-2 { grid-column: 2; grid-row: 1; }
+.image-group.layout-C > .grid-img-3 { grid-column: 1 / 3; grid-row: 2; }
+.image-group.layout-C > .grid-img-4 { grid-column: 3; grid-row: 1; }
+.image-group.layout-C > .grid-img-5 { grid-column: 3; grid-row: 2; }
 
 .grid-img {
   overflow: hidden;
@@ -231,12 +264,17 @@ section.gallery {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: filter 0.3s ease;
+  transition: opacity 0.25s ease;
 }
 
-/* Hover darkening effect */
-.grid-img:hover img {
-  filter: brightness(0.7);
+/* Hover lightening effect (Wix-style) */
+.grid-img:hover img,
+.simple-grid-item:hover img,
+.carousel-item:hover img,
+.justified-item:hover img,
+.square-item:hover img,
+.portrait-item:hover img {
+  opacity: 0.55;
 }
 
 /* Hide caption text in gallery grid */
@@ -257,30 +295,6 @@ section.gallery {
   font-size: 1.3rem;
   font-weight: 500;
   margin-bottom: 0.75rem;
-}
-
-.grid-img-1 { grid-column: 1; grid-row: 1; }
-.grid-img-2 { grid-column: 2; grid-row: 1; }
-.grid-img-3 { grid-column: 1 / 3; grid-row: 2; }
-.grid-img-4 { grid-column: 3; grid-row: 1 / 3; }
-
-.image-group:has(.grid-img-1):not(:has(.grid-img-2)) {
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  height: 300px;
-}
-.image-group:has(.grid-img-1):not(:has(.grid-img-2)) .grid-img-1 {
-  grid-column: 1; grid-row: 1;
-}
-.image-group:has(.grid-img-2):not(:has(.grid-img-3)) {
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  height: 250px;
-}
-.image-group:has(.grid-img-3):not(:has(.grid-img-4)) {
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  height: 350px;
 }
 
 /* ======================================

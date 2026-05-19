@@ -1,71 +1,40 @@
-<section class="gallery">
+{{/* Homepage gallery: iterate `groups` from front-matter; each group emits a .image-group.layout-A|B|C. */}}
+<section class="gallery home-gallery">
   <div id="gallery">
-    {{ $images := slice }}
-    {{ range $image := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
-      {{ $title := "" }}
-      {{ $date := "" }}
-      {{ with $image.Exif }}
-        {{ $date = .Date }}
-        {{ with .Tags.ImageDescription }}
-          {{ $title = . }}
-        {{ end }}
-      {{ end }}
-      {{ if ne $image.Title $image.Name }}
-        {{ $title = $image.Title }}
-      {{ end }}
-      {{ if $image.Params.Date }}
-        {{ $date = time $image.Params.Date }}
-      {{ end }}
-      {{ $images = $images | append (dict
-        "Name" $image.Name
-        "Title" $title
-        "Date" $date
-        "image" $image
-        "Params" $image.Params
-        )
-      }}
-    {{ end }}
     {{ $publishResources := default true .Params.build.publishResources }}
-    {{ $sortedImages := sort $images (.Params.sort_by | default "Name") (.Params.sort_order | default "asc") }}
-    {{ $total := len $sortedImages }}
 
-    {{ range $i, $item := $sortedImages }}
-      {{ $image := .image }}
-      {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fit 2000x2000")) }}
-      {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 2000x2000")) }}
-
-      {{/* Every 4 images, open a new group */}}
-      {{ $mod := mod $i 4 }}
-      {{ if eq $mod 0 }}
-        <div class="image-group">
-      {{ end }}
-
-      <a class="gallery-item grid-img grid-img-{{ add $mod 1 }}"
-         href="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}"
-         data-pswp-src="{{ $full.RelPermalink }}"
-         data-pswp-width="{{ $full.Width }}"
-         data-pswp-height="{{ $full.Height }}"
-         data-pswp-target="{{ $image.Name | urlize }}"
-         title="{{ .Title }}"
-         itemscope itemtype="https://schema.org/ImageObject">
-        <img class="lazyload"
-             width="{{ $thumbnail.Width }}"
-             height="{{ $thumbnail.Height }}"
-             data-src="{{ $thumbnail.RelPermalink }}"
-             alt="{{ .Title }}" />
-        {{ with .Title }}
-          <span class="pswp-caption-content">
-            <strong>{{ . }}</strong>
-            {{ with $image.Params.description }}<br>{{ . | safeHTML }}{{ end }}
-          </span>
+    {{ range $g, $group := .Params.groups }}
+      {{ $layout := default "A" $group.layout }}
+      <div class="image-group layout-{{ $layout }}">
+        {{ range $i, $item := $group.images }}
+          {{ $image := $.Resources.GetMatch $item.src }}
+          {{ if $image }}
+            {{ $thumb := $image.Filter (slice images.AutoOrient (images.Process "fit 2000x2000")) }}
+            {{ $full  := $image.Filter (slice images.AutoOrient (images.Process "fit 2000x2000")) }}
+            <a class="gallery-item grid-img grid-img-{{ add $i 1 }}"
+               href="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}"
+               data-pswp-src="{{ $full.RelPermalink }}"
+               data-pswp-width="{{ $full.Width }}"
+               data-pswp-height="{{ $full.Height }}"
+               data-pswp-target="{{ $image.Name | urlize }}"
+               title="{{ $item.title }}"
+               itemscope itemtype="https://schema.org/ImageObject">
+              <img class="lazyload"
+                   width="{{ $thumb.Width }}"
+                   height="{{ $thumb.Height }}"
+                   data-src="{{ $thumb.RelPermalink }}"
+                   alt="{{ $item.title }}" />
+              {{ with $item.title }}
+                <span class="pswp-caption-content">
+                  <strong>{{ . }}</strong>
+                  {{ with $item.description }}<br>{{ . | safeHTML }}{{ end }}
+                </span>
+              {{ end }}
+              <meta itemprop="contentUrl" content="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}" />
+            </a>
+          {{ end }}
         {{ end }}
-        <meta itemprop="contentUrl" content="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}" />
-      </a>
-
-      {{/* Close group after 4th image or at end */}}
-      {{ if or (eq $mod 3) (eq $i (sub $total 1)) }}
-        </div>
-      {{ end }}
+      </div>
     {{ end }}
   </div>
 </section>
