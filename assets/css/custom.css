@@ -295,7 +295,7 @@ section.gallery {
 .pswp__button { opacity: 0.7; }
 .pswp__button:hover { opacity: 1; }
 
-/* Force caption to right side (aside) */
+/* Caption positioned in the right whitespace next to image */
 .pswp__dynamic-caption.pswp__dynamic-caption--aside {
   background: transparent;
   color: #333;
@@ -303,7 +303,9 @@ section.gallery {
   font-size: 0.85rem;
   line-height: 1.7;
   max-width: 280px;
-  padding: 60px 30px;
+  padding: 0 30px;
+  align-self: flex-start;
+  margin-top: 0;
 }
 
 .pswp__dynamic-caption.pswp__dynamic-caption--below {
@@ -553,15 +555,19 @@ hgroup:has(h1:empty) {
 
 /* CV-specific document */
 .cv-doc { color: #5e5d5d; }
-.cv-doc p { margin: 0.4em 0; }
-.cv-doc h3 { margin-top: 2.2rem; margin-bottom: 0.8rem; }
+.cv-doc h3 { margin-top: 2.5rem; margin-bottom: 1.2rem; }
+
+/* Header-like entries (Education): title + indented sub + location */
+.cv-doc .cv-entry { margin: 0 0 1.4em; line-height: 1.7; }
+.cv-doc .cv-entry strong { color: #333; font-weight: 600; }
+.cv-doc .cv-indent { display: inline-block; padding-left: 2em; }
 
 /* CV definition list: year on left, entries on right */
 dl.cv-list {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 0.6rem 1.5rem;
-  margin: 0;
+  grid-template-columns: 90px 1fr;
+  gap: 1.6em 1.5rem;
+  margin: 0 0 1.5em;
 }
 dl.cv-list dt {
   font-weight: 600;
@@ -571,6 +577,9 @@ dl.cv-list dd {
   margin: 0;
   line-height: 1.7;
 }
+/* Sub-entries within a year — each on its own line with blank gap between (Wix-style) */
+dl.cv-list dd p { margin: 0 0 1em; }
+dl.cv-list dd p:last-child { margin-bottom: 0; }
 
 /* Bio/Contact background — image URL is injected in head-custom.html via Hugo's relURL */
 .prose:has(.bio-box),

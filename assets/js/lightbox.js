@@ -18,6 +18,13 @@ if (gallery) {
     arrowPrevTitle: params.arrowPrevTitle,
     arrowNextTitle: params.arrowNextTitle,
     errorMsg: params.errorMsg,
+    // Wix-style sizing: leave whitespace, reserve right column for caption
+    paddingFn: (viewportSize) => ({
+      top: Math.max(60, viewportSize.y * 0.08),
+      bottom: Math.max(60, viewportSize.y * 0.08),
+      left: Math.max(60, viewportSize.x * 0.06),
+      right: viewportSize.x > 700 ? Math.max(280, viewportSize.x * 0.30) : 30,
+    }),
   });
 
   // Love (heart) button — toggle per-image, persist to localStorage
@@ -101,7 +108,8 @@ if (gallery) {
 
   new PhotoSwipeDynamicCaption(lightbox, {
     mobileLayoutBreakpoint: 700,
-    type: "auto",
+    type: "aside",
+    horizontalEdgeThreshold: 0,
     mobileCaptionOverlapRatio: 1,
   });
 
