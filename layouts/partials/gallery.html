@@ -1,10 +1,14 @@
-{{/* Homepage gallery: iterate `groups` from front-matter; each group emits a .image-group.layout-A|B|C. */}}
+{{/* Homepage gallery: iterate `groups` from front-matter; each group emits a .image-group.layout-A|B|C.
+     Each group has a single title + description that applies to all images in the group
+     (mirrors how Wix represents one artwork with multiple photos). */}}
 <section class="gallery home-gallery">
   <div id="gallery">
     {{ $publishResources := default true .Params.build.publishResources }}
 
     {{ range $g, $group := .Params.groups }}
       {{ $layout := default "A" $group.layout }}
+      {{ $title := default "" $group.title }}
+      {{ $desc  := default "" $group.description }}
       <div class="image-group layout-{{ $layout }}">
         {{ range $i, $item := $group.images }}
           {{ $image := $.Resources.GetMatch $item.src }}
@@ -17,17 +21,17 @@
                data-pswp-width="{{ $full.Width }}"
                data-pswp-height="{{ $full.Height }}"
                data-pswp-target="{{ $image.Name | urlize }}"
-               title="{{ $item.title }}"
+               title="{{ $title }}"
                itemscope itemtype="https://schema.org/ImageObject">
               <img class="lazyload"
                    width="{{ $thumb.Width }}"
                    height="{{ $thumb.Height }}"
                    data-src="{{ $thumb.RelPermalink }}"
-                   alt="{{ $item.title }}" />
-              {{ with $item.title }}
+                   alt="{{ $title }}" />
+              {{ with $title }}
                 <span class="pswp-caption-content">
                   <strong>{{ . }}</strong>
-                  {{ with $item.description }}<br>{{ . | safeHTML }}{{ end }}
+                  {{ with $desc }}<br>{{ . | safeHTML }}{{ end }}
                 </span>
               {{ end }}
               <meta itemprop="contentUrl" content="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}" />

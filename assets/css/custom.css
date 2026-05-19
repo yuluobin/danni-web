@@ -192,11 +192,16 @@ section.gallery {
    HOMEPAGE: variable-sized image groups (Wix parity)
    3 layouts: A (4 imgs), B (5 imgs), C (5 imgs)
    ====================================== */
+.home-gallery {
+  max-width: 976px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .image-group {
   display: grid;
   gap: 4px;
   margin-bottom: 80px;
-  max-width: 976px;
 }
 
 /* Layout A: 4 imgs — 2 smalls top-left, medium bottom-left, large right */
@@ -327,9 +332,9 @@ section.gallery {
    SUB-PAGE: justified, square, portrait-cover
    ====================================== */
 .sub-gallery {
-  padding-left: 230px;
-  padding-right: 230px;
-  padding-top: 80px;
+  max-width: 976px;
+  margin: 0 auto;
+  padding: 80px 1rem 0;
 }
 
 /* Justified row layout (Wix Pro Gallery default) */
@@ -337,8 +342,6 @@ section.gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  max-width: 976px;
-  margin: 0;
 }
 .justified-item {
   flex-grow: 1;
@@ -364,7 +367,7 @@ section.gallery {
   display: grid;
   gap: 8px;
   max-width: 700px;
-  margin: 0;
+  margin: 0 auto;
 }
 .square-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .square-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
@@ -391,7 +394,7 @@ section.gallery {
   display: grid;
   gap: 8px;
   max-width: 700px;
-  margin: 0;
+  margin: 0 auto;
 }
 .portrait-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 .portrait-item {
@@ -506,8 +509,7 @@ hgroup:has(h1:empty) {
 .prose {
   max-width: 760px;
   margin: 0 auto;
-  margin-left: 230px;
-  padding-top: 80px;
+  padding: 80px 1rem 0;
   font-family: "Raleway", sans-serif;
   font-size: 0.85rem;
   line-height: 1.85;
