@@ -269,7 +269,7 @@ section.gallery {
 
 /* Hover lightening effect (Wix-style) */
 .grid-img:hover img,
-.simple-grid-item:hover img,
+.simple-grid-item:hover img, /* legacy alias - safe to delete once unused */
 .carousel-item:hover img,
 .justified-item:hover img,
 .square-item:hover img,
@@ -298,19 +298,52 @@ section.gallery {
 }
 
 /* ======================================
-   PAST WORK: Simple centered grid
+   SUB-PAGE: justified, square, portrait-cover
    ====================================== */
-.simple-grid {
-  display: grid;
-  gap: 20px;
-  max-width: 650px;
-  margin: 0 auto;
+.sub-gallery {
+  padding-left: 230px;
+  padding-right: 230px;
+  padding-top: 80px;
 }
 
-.simple-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-.simple-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+/* Justified row layout (Wix Pro Gallery default) */
+.justified-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 976px;
+  margin: 0;
+}
+.justified-item {
+  flex-grow: 1;
+  flex-basis: auto;
+  min-width: 100px;
+  overflow: hidden;
+  cursor: zoom-in;
+  position: relative !important;
+  width: auto !important;
+  top: auto !important;
+  left: auto !important;
+}
+.justified-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.25s ease;
+}
 
-.simple-grid-item {
+/* Square grid (Paper Jewelry) */
+.square-grid {
+  display: grid;
+  gap: 8px;
+  max-width: 700px;
+  margin: 0;
+}
+.square-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.square-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.square-item {
+  aspect-ratio: 1;
   overflow: hidden;
   cursor: zoom-in;
   position: relative !important;
@@ -319,17 +352,39 @@ section.gallery {
   top: auto !important;
   left: auto !important;
 }
-
-.simple-grid-item img {
+.square-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: opacity 0.25s ease;
 }
 
-/* Square aspect ratio when specified */
-.simple-grid.square .simple-grid-item {
-  aspect-ratio: 1;
+/* Portrait grid with contain fit (Undergrad) */
+.portrait-grid {
+  display: grid;
+  gap: 8px;
+  max-width: 700px;
+  margin: 0;
+}
+.portrait-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.portrait-item {
+  aspect-ratio: 131 / 208;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: #fff;
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+  top: auto !important;
+  left: auto !important;
+}
+.portrait-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.25s ease;
 }
 
 /* ======================================
@@ -339,22 +394,22 @@ section.gallery {
   position: relative;
   display: flex;
   align-items: center;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
+  padding: 1rem 40px;
 }
 
 .carousel-track {
   display: flex;
-  gap: 8px;
+  gap: 16px;
   overflow-x: hidden;
   scroll-behavior: smooth;
   flex: 1;
-  padding: 1rem 0;
 }
 
 .carousel-item {
-  flex: 0 0 32%;
+  flex: 0 0 calc((100% - 32px) / 3);
   position: relative !important;
   width: auto !important;
   height: auto !important;
@@ -368,6 +423,7 @@ section.gallery {
   height: auto;
   display: block;
   border-radius: 0;
+  transition: opacity 0.25s ease;
 }
 
 .carousel-arrow {
@@ -377,16 +433,17 @@ section.gallery {
   z-index: 10;
   background: transparent;
   border: none;
-  font-size: 3rem;
-  color: #bbb;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #888;
   cursor: pointer;
-  padding: 1rem 0.5rem;
+  padding: 0.4rem 0.6rem;
   transition: color 0.2s;
   user-select: none;
 }
 
 .carousel-arrow:hover {
-  color: #555;
+  color: #333;
 }
 
 .carousel-prev { left: 0; }
@@ -538,7 +595,8 @@ section.galleries {
   hgroup h1, hgroup p { text-align: center; }
   .prose { margin-left: auto; margin-right: auto; }
   .bio-box { margin: 0 auto; }
-  .simple-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
+  .square-grid.cols-4,
+  .portrait-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 640px) {
@@ -583,8 +641,10 @@ section.galleries {
   .has-dropdown:hover .dropdown-menu { display: none; }
   .has-dropdown.open .dropdown-menu { display: block; }
 
-  .simple-grid.cols-3,
-  .simple-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .square-grid.cols-3,
+  .square-grid.cols-4,
+  .portrait-grid.cols-3,
+  .portrait-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
 
   .image-group { height: 280px; }
 
