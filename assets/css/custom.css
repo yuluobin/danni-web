@@ -295,17 +295,16 @@ section.gallery {
 .pswp__button { opacity: 0.7; }
 .pswp__button:hover { opacity: 1; }
 
-/* Caption positioned in the right whitespace next to image */
+/* Caption sits next to image on the right */
 .pswp__dynamic-caption.pswp__dynamic-caption--aside {
   background: transparent;
   color: #333;
   font-family: "Raleway", sans-serif;
   font-size: 0.85rem;
   line-height: 1.7;
-  max-width: 280px;
-  padding: 0 30px;
-  align-self: flex-start;
-  margin-top: 0;
+  max-width: 300px;
+  padding: 0;
+  margin-left: 60px !important;
 }
 
 .pswp__dynamic-caption.pswp__dynamic-caption--below {
@@ -350,6 +349,27 @@ section.gallery {
 
 /* Hide the counter (Wix doesn't show one) */
 .pswp__counter { display: none; }
+
+/* Arrows: positioned right next to the image (not at viewport edges).
+   Image takes the left ~70% of viewport (left padding 6% + image ~64%).
+   Prev arrow sits just left of image; next arrow sits just right of image, before caption. */
+.pswp__button--arrow {
+  background: transparent !important;
+  width: 60px; height: 60px;
+}
+.pswp__button--arrow svg { fill: #888; }
+.pswp__button--arrow--prev {
+  left: 1vw !important;
+  right: auto !important;
+}
+.pswp__button--arrow--next {
+  left: 71vw !important;
+  right: auto !important;
+}
+@media (max-width: 700px) {
+  .pswp__button--arrow--prev { left: 0 !important; }
+  .pswp__button--arrow--next { left: auto !important; right: 0 !important; }
+}
 
 /* ======================================
    SUB-PAGE: justified, square, portrait-cover
@@ -534,17 +554,17 @@ hgroup:has(h1:empty) {
   margin: 0 auto;
   padding: 80px 1rem 0;
   font-family: "Raleway", sans-serif;
-  font-size: 0.85rem;
-  line-height: 1.85;
+  font-size: 14px;
+  line-height: 1.3;
   color: #5e5d5d;
 }
 
 .prose h3 {
   font-family: "Raleway", sans-serif;
-  font-size: 0.95rem;
+  font-size: 14px;
   font-weight: 600;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
+  margin-top: 1.8em;
+  margin-bottom: 1em;
   border-bottom: none;
   padding-bottom: 0;
   color: #333;
@@ -555,30 +575,30 @@ hgroup:has(h1:empty) {
 
 /* CV-specific document */
 .cv-doc { color: #5e5d5d; }
-.cv-doc h3 { margin-top: 2.5rem; margin-bottom: 1.2rem; }
+.cv-doc > p { margin: 0; }
 
 /* Header-like entries (Education): title + indented sub + location */
-.cv-doc .cv-entry { margin: 0 0 1.4em; line-height: 1.7; }
+.cv-doc .cv-entry { margin: 0 0 1.1em; line-height: 1.4; }
 .cv-doc .cv-entry strong { color: #333; font-weight: 600; }
-.cv-doc .cv-indent { display: inline-block; padding-left: 2em; }
+.cv-doc .cv-indent { display: inline-block; padding-left: 4em; }
 
-/* CV definition list: year on left, entries on right */
+/* CV definition list: year on left, entries on right (matches Wix's tabular layout) */
 dl.cv-list {
   display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 1.6em 1.5rem;
-  margin: 0 0 1.5em;
+  grid-template-columns: 78px 1fr;
+  gap: 1.15em 1rem;
+  margin: 0 0 1.1em;
 }
 dl.cv-list dt {
-  font-weight: 600;
-  color: #333;
+  font-weight: 400;
+  color: #5e5d5d;
 }
 dl.cv-list dd {
   margin: 0;
-  line-height: 1.7;
+  line-height: 1.4;
 }
-/* Sub-entries within a year — each on its own line with blank gap between (Wix-style) */
-dl.cv-list dd p { margin: 0 0 1em; }
+/* Sub-entries within a year — each on its own line with blank-line gap between */
+dl.cv-list dd p { margin: 0 0 0.95em; line-height: 1.4; }
 dl.cv-list dd p:last-child { margin-bottom: 0; }
 
 /* Bio/Contact background — image URL is injected in head-custom.html via Hugo's relURL */

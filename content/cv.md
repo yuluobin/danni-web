@@ -33,17 +33,17 @@ School of Public Health, Indiana University, Bloomington, IN
 <dt>2022</dt>
 <dd>
 <em>Common Ground</em><br>
-<span class="cv-indent">Two Person Show, Adorned Spaces, Society of North American Goldsmith</span>
+Two Person Show, Adorned Spaces, Society of North American Goldsmith
 </dd>
 <dt>2019</dt>
 <dd>
 <em>I was, I am, I will</em><br>
-<span class="cv-indent">Lillstreet Gallery, Chicago, IL</span>
+Lillstreet Gallery, Chicago, IL
 </dd>
 <dt>2018</dt>
 <dd>
 <em>Looking forward, Looking back</em><br>
-<span class="cv-indent">Grunwald Gallery, Indiana University, Bloomington, IN</span>
+Grunwald Gallery, Indiana University, Bloomington, IN
 </dd>
 </dl>
 
@@ -191,11 +191,13 @@ School of Public Health, Indiana University, Bloomington, IN
 <dl class="cv-list">
 <dt>2024</dt>
 <dd>
-Assistant Professor of Jewelry and Metal Arts, Pratt Munson College of Art and Design, Utica, NY
+Assistant Professor of Jewelry and Metal Arts, Pratt Munson College of Art and Design,<br>
+Utica, NY
 </dd>
 <dt>2023</dt>
 <dd>
-Visiting Assistant Professor of Jewelry and Metal Arts, Pratt Munson College of Art and Design, Utica, NY
+Visiting Assistant Professor of Jewelry and Metal Arts, Pratt Munson College of Art and Design,<br>
+Utica, NY
 </dd>
 <dt>2022</dt>
 <dd>
@@ -203,32 +205,41 @@ Instructor, Penland School of Craft, Bakersville, NC
 </dd>
 <dt>2021</dt>
 <dd>
-<p>Adjunct Instructor, Basic Metal and Jewelry, School of Fine and Performing Arts, Kean University, Union, NJ</p>
+<p>Adjunct Instructor, Basic Metal and Jewelry, School of Fine and Performing Arts<br>
+Kean University, Union, NJ</p>
 <p>Teaching Assistant to Carolanne Patterson, Metalsmithing: Sophomore Jewelry Design: Technology and Making (Spring), Rhode Island School of Design, Providence, RI</p>
 <p>Studio Technician's Assistant, Rhode Island School of Design, Providence, RI</p>
 </dd>
 <dt>2020</dt>
 <dd>
-<p>Instructor, Introduction to Jewelry, Jewelry + Metalsmithing Department (Fall), Rhode Island School of Design, Providence, RI</p>
-<p>Program Assistant in Jewelry + Metalsmithing (Spring), Rhode Island School of Design, Providence, RI</p>
-<p>Instructor, Introduction to Jewelry, Jewelry + Metalsmithing Department (Wintersession), Rhode Island School of Design, Providence, RI</p>
+<p>Instructor, Introduction to Jewelry, Jewelry+ Metalsmithing Department (Fall)<br>
+Rhode Island School of Design, Providence, RI</p>
+<p>Program Assistant in Jewelry + Metalsmithing  (Spring)<br>
+Rhode Island School of Design, Providence, RI</p>
+<p>Instructor, Introduction to Jewelry, Jewelry+ Metalsmithing Department (Wintersession)<br>
+Rhode Island School of Design, Providence, RI</p>
 </dd>
 <dt>2019</dt>
 <dd>
-Program Assistant in Jewelry + Metalsmithing (Fall), Rhode Island School of Design, Providence, RI
+Program Assistant in Jewelry + Metalsmithing (Fall)<br>
+Rhode Island School of Design, Providence, RI
 </dd>
 <dt>2018–2019</dt>
 <dd>
-<p>Local Shipping Liaison &amp; Digital Student Slide Show Coordinator, Society of North American Goldsmiths, Eugene, OR</p>
-<p>Artist in Residence, Instructor in Metalsmithing, Jewelry &amp; Glass, Lillstreet Art Center, Chicago, IL</p>
+<p>Local Shipping Liaison &amp; Digital Student Slide Show Coordinator<br>
+Society of North American Goldsmiths, Eugene, OR</p>
+<p>Artist in Residence, Instructor in Metalsmithing, Jewelry&amp; Glass<br>
+Lillstreet Art Center, Chicago, IL</p>
 </dd>
 <dt>2017–2018</dt>
 <dd>
-President, Metalsmithing &amp; Jewelry Guild at Indiana University
+President<br>
+Metalsmithing &amp; Jewelry Guild at Indiana University
 </dd>
 <dt>2016–2017</dt>
 <dd>
-Secretary, Metalsmithing &amp; Jewelry Guild at Indiana University
+Secretary<br>
+Metalsmithing &amp; Jewelry Guild at Indiana University
 </dd>
 </dl>
 

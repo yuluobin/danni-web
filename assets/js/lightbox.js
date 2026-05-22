@@ -18,12 +18,15 @@ if (gallery) {
     arrowPrevTitle: params.arrowPrevTitle,
     arrowNextTitle: params.arrowNextTitle,
     errorMsg: params.errorMsg,
-    // Wix-style sizing: leave whitespace, reserve right column for caption
+    // Wix proportions at 1512 viewport: 90 + 878 + 94 + 298 + 152 = 1512
+    //   left, image, gap, caption, right_margin
+    // For our paddingFn: right = right_margin only. Dynamic caption subtracts its
+    // own width + margin from the available area to position the image.
     paddingFn: (viewportSize) => ({
-      top: Math.max(60, viewportSize.y * 0.08),
-      bottom: Math.max(60, viewportSize.y * 0.08),
+      top: Math.max(60, viewportSize.y * 0.10),
+      bottom: Math.max(60, viewportSize.y * 0.10),
       left: Math.max(60, viewportSize.x * 0.06),
-      right: viewportSize.x > 700 ? Math.max(280, viewportSize.x * 0.30) : 30,
+      right: viewportSize.x > 700 ? Math.max(140, viewportSize.x * 0.10) : 30,
     }),
   });
 
